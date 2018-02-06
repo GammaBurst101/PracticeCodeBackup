@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
 
-public class Clock2 
+public class AlarmClock 
 {
     JFrame frame;
     JTextField textfield;
     JPanel panel;
     
-    public Clock2()
+    public AlarmClock()
     {
         //Setting JFrame
         frame = new JFrame ("Clock");

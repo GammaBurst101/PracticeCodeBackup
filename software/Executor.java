@@ -1,13 +1,13 @@
 package software;
-class Clock2Exe
+class Executor
 {
     public static void main (String args[])
     {
-        new Clock2Exe();
+        new Executor();
     }
     
-    Clock2Exe()
+    Executor()
     {
-        new Clock2();
+        new AlarmClock();
     }
 }
