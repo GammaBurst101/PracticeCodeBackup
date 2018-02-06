@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class AlarmClock 
 {
     JFrame frame;
-    JTextField textfield;
+    JTextField textfield, tfield2;
     JPanel panel;
     
     public AlarmClock()
@@ -29,8 +29,12 @@ public class AlarmClock
         textfield.setEditable(false);
         textfield.setFont(new Font("Arial", Font.PLAIN, 48));
         
+        tfield2 = new JTextField("Enter the time to set alarm at here");
+        tfield2.setBounds(100, 20, 170, 40);
+        
         //Add components
         panel.add(textfield);
+        panel.add(tfield2);
         frame.add(panel);
         
         Timer t = new Timer(1000,new Listener());
