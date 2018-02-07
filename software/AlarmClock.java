@@ -10,7 +10,7 @@ public class AlarmClock
     JFrame frame;
     JTextField textfield, tfield2;
     JPanel panel;
-    
+    JButton b;
     public AlarmClock()
     {
         //Setting JFrame
@@ -32,9 +32,12 @@ public class AlarmClock
         tfield2 = new JTextField("Enter the time to set alarm at here");
         tfield2.setBounds(100, 20, 170, 40);
         
+        b = new JButton("Set Alarm");
+        
         //Add components
         panel.add(textfield);
         panel.add(tfield2);
+        panel.add(b);
         frame.add(panel);
         
         Timer t = new Timer(1000,new Listener());
