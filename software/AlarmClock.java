@@ -23,9 +23,10 @@ public class AlarmClock
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         
-        //initialisations
+        //initialisations and setting them
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
+        panel.setBounds(0 ,0, 500, 400);
         
         textfield = new JTextField(10);
         textfield.setEditable(false);
@@ -38,16 +39,17 @@ public class AlarmClock
         tf3.setBounds(350, 200, 40, 40);
         
         b = new JButton("Set Alarm");
+        b.setBounds(250, 350, 100, 40);
         
         l = new JLabel("Enter the time to set alarm at here");
         l.setBounds(100, 200, 100, 40);
         
         //Add components
         panel.add(textfield);
+        panel.add(l);
         panel.add(tf2);
         panel.add(tf3);
         panel.add(b);
-        panel.add(l);
         frame.add(panel);
         
         Timer t = new Timer(1000,new Listener());
