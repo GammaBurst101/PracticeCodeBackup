@@ -8,14 +8,16 @@ import java.util.Calendar;
 public class AlarmClock 
 {
     JFrame frame;
-    JTextField textfield, tfield2;
+    JTextField textfield, tf2, tf3;
     JPanel panel;
     JButton b;
+    JLabel l;
+    
     public AlarmClock()
     {
         //Setting JFrame
         frame = new JFrame ("Clock");
-        frame.setSize(400, 200);
+        frame.setSize(500, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(true);
@@ -29,15 +31,23 @@ public class AlarmClock
         textfield.setEditable(false);
         textfield.setFont(new Font("Arial", Font.PLAIN, 48));
         
-        tfield2 = new JTextField("Enter the time to set alarm at here");
-        tfield2.setBounds(100, 20, 170, 40);
+        tf2 = new JTextField("HH");
+        tf2.setBounds(250, 200, 40, 40);
+        
+        tf3 = new JTextField("SS");
+        tf3.setBounds(350, 200, 40, 40);
         
         b = new JButton("Set Alarm");
         
+        l = new JLabel("Enter the time to set alarm at here");
+        l.setBounds(100, 200, 100, 40);
+        
         //Add components
         panel.add(textfield);
-        panel.add(tfield2);
+        panel.add(tf2);
+        panel.add(tf3);
         panel.add(b);
+        panel.add(l);
         frame.add(panel);
         
         Timer t = new Timer(1000,new Listener());
