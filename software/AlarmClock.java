@@ -13,6 +13,8 @@ public class AlarmClock
     JButton b;
     JLabel l;
     String alarm;
+    Timer t, t2;
+    Boolean check = false;
     
     public AlarmClock()
     {
@@ -45,12 +47,21 @@ public class AlarmClock
         {
             public void actionPerformed(ActionEvent e)
             {
-                alarm = tf2.getText()+":" + tf3.getText() +":00";
+                alarm = tf2.getText()+":" + tf3.getText() +":0";
             }
         });
         
         l = new JLabel("Enter the time to set alarm at here");
         l.setBounds(100, 200, 100, 40);
+        
+        t = new Timer(1000,new Listener());
+        t2 = new Timer(1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(time.getText().equals(alarm))
+                check = true;
+            }
+        });
         
         //Add components
         panel.add(time);
@@ -60,16 +71,15 @@ public class AlarmClock
         panel.add(b);
         frame.add(panel);
         
-        Timer t = new Timer(1000,new Listener());
+        //Starting the timers
         t.start();
+        t2.start();
     }
     
     class Listener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-    
-            
             Calendar cal = Calendar.getInstance();
             
             int hour = cal.get(Calendar.HOUR_OF_DAY);
