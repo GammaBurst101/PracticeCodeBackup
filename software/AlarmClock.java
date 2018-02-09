@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class AlarmClock 
 {
     JFrame frame;
-    JTextField textfield, tf2, tf3;
+    JTextField time, tf2, tf3;
     JPanel panel;
     JButton b;
     JLabel l;
@@ -29,9 +29,9 @@ public class AlarmClock
         panel.setLayout(new FlowLayout());
         panel.setBounds(0 ,0, 500, 400);
         
-        textfield = new JTextField(10);
-        textfield.setEditable(false);
-        textfield.setFont(new Font("Arial", Font.PLAIN, 48));
+        time = new JTextField(10);
+        time.setEditable(false);
+        time.setFont(new Font("Arial", Font.PLAIN, 48));
         
         tf2 = new JTextField("HH");
         tf2.setBounds(250, 200, 40, 40);
@@ -53,7 +53,7 @@ public class AlarmClock
         l.setBounds(100, 200, 100, 40);
         
         //Add components
-        panel.add(textfield);
+        panel.add(time);
         panel.add(l);
         panel.add(tf2);
         panel.add(tf3);
@@ -68,13 +68,15 @@ public class AlarmClock
     {
         public void actionPerformed(ActionEvent e)
         {
+    
+            
             Calendar cal = Calendar.getInstance();
             
             int hour = cal.get(Calendar.HOUR_OF_DAY);
             int min = cal.get(Calendar.MINUTE);
             int sec = cal.get(Calendar.SECOND);
             
-            textfield.setText(hour+":"+min+":"+sec);
+            time.setText(hour+":"+min+":"+sec);
         }
     }
 }
