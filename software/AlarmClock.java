@@ -12,6 +12,7 @@ public class AlarmClock
     JPanel panel;
     JButton b;
     JLabel l;
+    String alarm;
     
     public AlarmClock()
     {
@@ -40,6 +41,13 @@ public class AlarmClock
         
         b = new JButton("Set Alarm");
         b.setBounds(250, 350, 100, 40);
+        b.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                alarm = tf2.getText()+":" + tf3.getText() +":00";
+            }
+        });
         
         l = new JLabel("Enter the time to set alarm at here");
         l.setBounds(100, 200, 100, 40);
