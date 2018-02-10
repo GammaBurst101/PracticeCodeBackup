@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
+import javax.sound.sampled.*;
+import java.io.File;
 
 public class AlarmClock 
 {
@@ -59,7 +61,7 @@ public class AlarmClock
             public void actionPerformed(ActionEvent e)
             {
                 if(time.getText().equals(alarm))
-                check = true;
+                ringAlarm();
             }
         });
         
@@ -87,6 +89,19 @@ public class AlarmClock
             int sec = cal.get(Calendar.SECOND);
             
             time.setText(hour+":"+min+":"+sec);
+        }
+    }
+    
+    private static void ringAlarm()
+    {
+        try{
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("D:\\Prasoon\\Study_Stuff\\JAVA\\alarm.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        }catch(Exception e) {
+            System.out.println ("Error with playing sound.");
+            e.printStackTrace();
         }
     }
 }
