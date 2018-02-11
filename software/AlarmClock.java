@@ -39,7 +39,7 @@ public class AlarmClock
         tf2 = new JTextField("HH");
         tf2.setBounds(250, 200, 40, 40);
         
-        tf3 = new JTextField("SS");
+        tf3 = new JTextField("MM");
         tf3.setBounds(350, 200, 40, 40);
         
         b = new JButton("Set Alarm");
