@@ -10,12 +10,13 @@ import java.io.File;
 public class AlarmClock 
 {
     private JFrame frame;
-    private JTextField time, tf2, tf3;
+    private JTextField time, alarmHour, alarmMin;
     private JPanel panel;
     private JButton b;
     private JLabel l;
     private String alarm;
     private Timer t, t2;
+    private static boolean alarmRung = false;
     
     public AlarmClock()
     {
@@ -36,11 +37,11 @@ public class AlarmClock
         time.setEditable(false);
         time.setFont(new Font("Arial", Font.PLAIN, 48));
         
-        tf2 = new JTextField("HH");
-        tf2.setBounds(250, 200, 40, 40);
+        alarmHour = new JTextField("HH");
+        alarmHour.setBounds(250, 200, 40, 40);
         
-        tf3 = new JTextField("MM");
-        tf3.setBounds(350, 200, 40, 40);
+        alarmMin = new JTextField("MM");
+        alarmMin.setBounds(350, 200, 40, 40);
         
         b = new JButton("Set Alarm");
         b.setBounds(250, 350, 100, 40);
@@ -48,7 +49,16 @@ public class AlarmClock
         {
             public void actionPerformed(ActionEvent e)
             {
-                alarm = tf2.getText()+":" + tf3.getText() +":0";
+                if((b.getText().equals("Stop Alarm"))==false)
+                {
+                    alarm = alarmHour.getText()+":" + alarmMin.getText() +":0";
+                    b.setText("Stop Alarm");
+                }
+                else
+                {
+                    alarm = "";
+                    b.setText("Set Alarm");
+                }
             }
         });
         
@@ -61,14 +71,20 @@ public class AlarmClock
             {
                 if(time.getText().equals(alarm))
                 ringAlarm();
+                
+                if(alarmRung==true && b.getText().equals("Stop Alarm"))
+                {
+                    b.setText("Set Alarm");
+                    alarmRung = false;
+                }
             }
         });
         
         //Add components
         panel.add(time);
         panel.add(l);
-        panel.add(tf2);
-        panel.add(tf3);
+        panel.add(alarmHour);
+        panel.add(alarmMin);
         panel.add(b);
         frame.add(panel);
         
@@ -98,6 +114,7 @@ public class AlarmClock
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
+            alarmRung = true;
         }catch(Exception e) {
             System.out.println ("Error with playing sound.");
             e.printStackTrace();
