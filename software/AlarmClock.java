@@ -9,13 +9,13 @@ import java.io.File;
 
 public class AlarmClock 
 {
-    JFrame frame;
-    JTextField time, tf2, tf3;
-    JPanel panel;
-    JButton b;
-    JLabel l;
-    String alarm;
-    Timer t, t2;
+    private JFrame frame;
+    private JTextField time, tf2, tf3;
+    private JPanel panel;
+    private JButton b;
+    private JLabel l;
+    private String alarm;
+    private Timer t, t2;
     
     public AlarmClock()
     {
