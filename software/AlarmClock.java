@@ -16,7 +16,6 @@ public class AlarmClock
     JLabel l;
     String alarm;
     Timer t, t2;
-    Boolean check = false;
     
     public AlarmClock()
     {
