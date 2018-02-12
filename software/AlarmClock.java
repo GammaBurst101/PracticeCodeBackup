@@ -110,7 +110,7 @@ public class AlarmClock
     private static void ringAlarm()
     {
         try{
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("D:\\Prasoon\\Study_Stuff\\JAVA\\alarm.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("software\\sounds\\alarm.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
