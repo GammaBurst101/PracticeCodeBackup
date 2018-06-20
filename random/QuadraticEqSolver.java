@@ -1,5 +1,3 @@
-//DOES NOT WORK!!
-
 package random;
 //This class will try to solve a quadratic equation
 //As the input, user will provide the coefficients of the terms and the constant term
