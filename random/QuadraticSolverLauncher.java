@@ -12,9 +12,9 @@ class QuadraticSolverLauncher {
         System.out.println ("----------------------------------------------------");
         System.out.println ("A quadratic eq is of the form: ax^2 + bx +c = 0");
         System.out.println ("Please enter the value of a, b and c below");
-        int a = scan.nextInt();
-        int b = scan.nextInt();
-        int c = scan.nextInt();
+        double a = scan.nextDouble();
+        double b = scan.nextDouble();
+        double c = scan.nextDouble();
         System.out.println ("-----------------------------------------------------");
         
         //Setting all the values
