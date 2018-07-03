@@ -2,12 +2,7 @@
 package headFirst;
 class Test {
     public static void main (String args[]){
-        //Trying to see if I can use a loop after assignment operator
-        String[] myList = new String[2];
-        myList[0] = "Prasoon";
-        myList[1] = "Vibhas";
-        
-        String toFind = "Vibhas";
-        boolean isIn = for (String element: myList) if (toFind.equals(element)) true;
+        //Trying to see if I can call the main() of this class
+        System.out.println ("Test class Main method called");
     }
 }
