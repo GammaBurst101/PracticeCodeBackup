@@ -1,10 +1,12 @@
 //Full gui of the beatbox app
 package headFirst;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.sound.midi.*;
 import java.util.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class BeatBox {
     JPanel mainPanel;
@@ -14,6 +16,7 @@ public class BeatBox {
     Track track;
     JFrame theFrame;
 
+    //All the instruments names and the corersponding codes for the Midi system
     String[] instrumentNames = {"Bass Drum", "Closed Hi-Hat",
             "Open Hi-Hat", "Acoustic Snare", "Crash Cymbal", "Hand Clap",
             "High Tom", "Hi Bongo", "Maracas", "Whistle", "Low Conga", "Cowbell", "Vibraslap", "Low-mid Tom", "High Agogo",
@@ -48,6 +51,14 @@ public class BeatBox {
         downTempo.addActionListener(new MyDownTempoListener());
         buttonBox.add(downTempo);
 
+        JButton serialize = new JButton("SerializeIt");
+        serialize.addActionListener(new MySendListener());
+        buttonBox.add(serialize);
+        
+        JButton restore = new JButton ("Restore");
+        restore.addActionListener(new MyReadInListener());
+        buttonBox.add(restore);
+        
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         for (int i = 0; i < 16; i ++) {
             nameBox.add(new Label(instrumentNames[i]));
@@ -121,6 +132,7 @@ public class BeatBox {
         }catch (Exception e) {e.printStackTrace();}
     }
 
+    //Inner classes for the buttons start here
     public class MyStartListener implements ActionListener {
         public void actionPerformed (ActionEvent e) {
             buildTrackAndStart();
@@ -147,6 +159,60 @@ public class BeatBox {
         }
     }
 
+    public class MySendListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            boolean[] checkBoxState = new boolean[256];
+            
+            for (int i = 0; i < 256; i++) {
+                JCheckBox check = checkboxList.get(i);
+                if (check.isSelected() == true) 
+                    checkBoxState[i] = true;
+            }
+            
+            JFileChooser saver = new JFileChooser();
+            saver.showSaveDialog(theFrame);
+            
+            try {
+                ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(saver.getSelectedFile()));
+                writer.writeObject(checkBoxState);
+                writer.close();
+            }catch (IOException error) {
+                error.printStackTrace();
+            }
+        }
+    }
+    
+    public class MyReadInListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            boolean[] checkBoxState = null;
+            
+            JFileChooser opener = new JFileChooser();
+            opener.showOpenDialog(theFrame);
+            
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream(opener.getSelectedFile()));
+                checkBoxState = (boolean[]) reader.readObject();
+                reader.close();
+            } catch (Exception err) {
+                err.printStackTrace();
+            }
+            
+            for (int i=0; i<256; i++) {
+                JCheckBox check = checkboxList.get(i);
+                if (checkBoxState[i])
+                    check.setSelected(true);
+                else
+                    check.setSelected(false);
+            }
+            
+            sequencer.stop();
+            buildTrackAndStart();
+        }
+    }
+    //Inner classes for the buttons end here
+    
+    
+    //Utility method
     public void makeTracks(int[] list) {
         for (int i = 0; i < 16; i++) {
             int key = list[i];
@@ -159,6 +225,7 @@ public class BeatBox {
         }
     }
 
+    //Utility method
     public MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
         MidiEvent event = null;
         try {

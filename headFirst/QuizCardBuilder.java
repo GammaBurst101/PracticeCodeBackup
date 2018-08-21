@@ -37,8 +37,8 @@ public class QuizCardBuilder {
         answer.setFont(bigFont);
         
         JScrollPane aScroller = new JScrollPane(answer);
-        aScroller.setVerticalScrollBarPolicy(JScroller.VERTICAL_SCROLLBAR_ALWAYS);
-        aScroller.setHorizontalScrollBarPolicy(JScroller.HORIZONTAL_SCROLLBAR_ALWAYS);
+        aScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        aScroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         
         JButton nextButton = new JButton("Next Card");
         
@@ -65,6 +65,7 @@ public class QuizCardBuilder {
         menuBar.add(fileMenu);
         frame.setJMenuBar(menuBar);
         frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600);
         frame.setVisible(true);
     }
