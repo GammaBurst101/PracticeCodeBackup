@@ -1,5 +1,5 @@
 package random;
 class AccessPrivate {
     void method() {
-    new PrivateDemo().x = 4;}
+    new ProtectedDemo().x = 4;}
 }

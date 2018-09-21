@@ -16,7 +16,11 @@ class DailyAdviseClient {
     
     private void go() {
         try {
-            Socket s = new Socket("127.0.0.1", 4242);
+            //If the server is on the local host
+            //Socket s = new Socket("127.0.0.1", 4242); 
+            
+            //Trying to access the server on my friend's host
+            Socket s = new Socket("157.43.23.203", 4242);
             
             InputStreamReader streamReader = new InputStreamReader(s.getInputStream());
             BufferedReader reader = new BufferedReader(streamReader);
