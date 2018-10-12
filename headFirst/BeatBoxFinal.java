@@ -145,6 +145,76 @@ public class BeatBoxFinal {
                     trackList.add(null); //because this slot should be empty in the track
                 }
             }
+            makeTracks( trackList );
+        }
+        track.add(makeEvent (192, 9, 1, 0, 15)); // - so we always go to full 16 beats
+        try {
+            sequencer.setSequence(sequence);
+            sequencer.setLoopCount(sequencer.LOOP_CONTINUOUSLY);
+            sequencer.start();
+            sequencer.setTempoInBPM(120);
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+    
+    public class MyStartListener implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            buildTrackAndStart();
         }
     }
+    
+    public class MyStopListener implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            sequencer.stop();
+        }
+    }
+    
+    public class MyUpTempoListener implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            float tempoFactor = sequencer.getTempoFactor();
+            sequencer.setTempoFactor( (float) (tempoFactor * 1.03));
+        }
+    }
+    
+    public class MyDownTempoListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            float tempoFactor = sequencer.getTempoFactor();
+            sequencer.setTempoFactor ((float) (tempoFactor * .97));
+        }
+    }
+    
+    public class MySendListener implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            //make an arraylist of just the STATE of the checkboxes
+            boolean[] checkboxState = new boolean [256];
+            for (int i = 0; i < 256; i++) {
+                JCheckBox check = (JCheckBox) checkboxList.get(i);
+                if (check.isSelected()) {
+                    checkboxState[i] = true;
+                }
+            }
+            String messageToSend = null;
+            try {
+                out.writeObject (userName + nextNum++ + ": " +userMessage.getText());
+                out.writeObject (checkboxState);
+            } catch (Exception e) {
+                System.out.println ("Sorry dude. Could not send it to the server.");
+            }
+            userMessage.setText("");
+        }
+    }
+    public class MyListSelectionListener implements ListSelectionListener {
+        public void valueChanged (ListSelectionEvent le) {
+            if (!le.getValueIsAdjusting()) {
+                String selected = (String) incomingList.getSelectedValue();
+                if (selected  != null) {
+                    //now go to the map, and change the sequence
+                    boolean[] selectedState = (boolean[]) otherSeqsMap.get(selected);
+                    changeSequence(selectedState);
+                    sequencer.stop();
+                    buildTrackAndStart();
+                }
+            }
+        }
+    }
+    public class RemoteReader implements Runnable {}
 }

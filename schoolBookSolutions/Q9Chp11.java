@@ -13,5 +13,35 @@ package schoolBookSolutions;
 import java.util.Scanner;
 class Q9Chp11 {
     public static void main (String args[]) {
+        Scanner scan = new Scanner (System.in);
+        System.out.print ("Enter the size of the matrix: ");
+        int n = scan.nextInt();
+        
+        //Input Module
+        int[][] matrix = new int[n][n];
+        System.out.println ("Enter the elements: ");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scan.nextInt();
+            }
+        }
+        
+        //Processing Module
+        int r = 0, c = n - 1, left = 0, right = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if ( i==j )
+                    left += matrix[i][j]; 
+            }
+            right += matrix[r][c];
+            r++;
+            c--;
+        }
+        
+        //Output Module
+        if ( n % 2 == 0)
+            System.out.println ("Sum of diagonals: "+(left + right));
+        else
+            System.out.println ("Sum of diagonals: "+((left + right) - matrix[n/2][n/2]));
     }
 }
