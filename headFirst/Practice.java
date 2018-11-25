@@ -6,13 +6,7 @@ import java.awt.*;
 class Practice {
     int y = 60;
     int dy = 15;
-    Color ballColor = new Color (0, 0, 255);
-
-    Sequencer player = MidiSystem.getSequencer();
-    
-
-    Sequence seq = new Sequence (Sequence.PPQ, 4);
-    Track track = seq.createTrack();
+    Color ballColor;
 
     public static void main (String ars[]) {
         new Practice().setUpGUI();
@@ -33,12 +27,12 @@ class Practice {
             if ( y < 0 ) {
                 dy = 15;
                 ballColor = new Color (100, 255, 100);
-                playSound();
+
             }
             if ( y > 400) {
                 dy = -15;
                 ballColor = new Color (255, 255, 100);
-                playSound();
+
             }
 
             y += dy;
@@ -49,25 +43,6 @@ class Practice {
                 Thread.sleep (50);
             } catch (Exception e) {}
         }
-    }
-
-    static void playSound() {
-        try {
-            player.open();
-            
-            ShortMessage a = new ShortMessage();
-            a.setMessage (144, 1, 2, 100);
-            MidiEvent noteOn = new MidiEvent (a, 1);
-            track.add(noteOn);
-
-            ShortMessage b = new ShortMessage ();
-            b.setMessage(128, 1, 2, 100);
-            MidiEvent noteOff = new MidiEvent (b, 2);
-            track.add (noteOff);
-
-            player.setSequence (seq);
-            player.start();
-        }catch (Exception error){}
     }
 
     class AnimationPanel extends JPanel {
