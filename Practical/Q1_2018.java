@@ -2,7 +2,7 @@ package Practical;
 /*  ALGORITHM:
  * 1. Start
  * 2. Take input from the user
- * 3. If the number is even and between 9 and 50 then procede otherwise print appropriate msg and go to step 8
+ * 3. If the number is even and between 9 and 50 then procede otherwise print an error msg and go to step 8
  * 4. Go from 3 to the input number / 2, repeating the following 3 steps
  * 5. Check if the current number is prime
  * 6. If it is prime then check if the number reqd for the sum is also prime
