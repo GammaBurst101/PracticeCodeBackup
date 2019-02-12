@@ -26,7 +26,7 @@ class Q2_2018 {
             sortRow(arr[i]);
         }
     }
-    
+
     void sortRow (int[] arr) {
         //Using selection sort
         for (int i = 0; i < arr.length - 1; i++) {
@@ -39,7 +39,7 @@ class Q2_2018 {
             }
         }
     }
-    
+
     public static void main (String args[]) {
         Scanner scan = new Scanner (System.in);
         Q2_2018 obj = new Q2_2018();
@@ -52,22 +52,22 @@ class Q2_2018 {
 
         if ( (M <= 2) || (M >= 10) || (N <= 2) || (N >= 10) ) {
             System.out.println ("Out of range");
-            System.exit(0);
-        }
-        int A[][] = new int[M][N];
+        } else {
+            int A[][] = new int[M][N];
 
-        //Taking the user input for the elements
-        System.out.println ("Enter the values for the matrix:");
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                A[i][j] = scan.nextInt();
+            //Taking the user input for the elements
+            System.out.println ("Enter the values for the matrix:");
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++) {
+                    A[i][j] = scan.nextInt();
+                }
             }
-        }
 
-        System.out.println ("Original Matrix: ");
-        obj.display(A);
-        obj.sort(A);
-        System.out.println ("Matrix after sorting rows: ");
-        obj.display(A);
+            System.out.println ("Original Matrix: ");
+            obj.display(A);
+            obj.sort(A);
+            System.out.println ("Matrix after sorting rows: ");
+            obj.display(A);
+        }
     }
 }
