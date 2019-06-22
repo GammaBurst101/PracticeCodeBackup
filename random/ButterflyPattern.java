@@ -25,10 +25,10 @@ class ButterflyPattern {
     }
     
     void showPattern() {
-        System.out.println ("Pattern ");
+        System.out.println ("\nPattern: ");
         for (int i = 0; i < dda.length; i ++) {
             for (int j = 0; j < dda[0].length; j++) {
-                if ( ( j >= i && (i+j) >= (dda.length-1) ) || ( j <= i && (i+j) <= (dda.length-1) ) )
+                if ( (j >= i && i+j >= dda.length-1) || (j <= i && i+j <= dda.length-1) )
                     System.out.print (dda[i][j] + "\t");
                 else 
                     System.out.print ("\t");
