@@ -13,7 +13,7 @@ package Practical;
 import java.util.Scanner;
 public class Q3_2016
 {
-    public static void main()
+    public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
         String str1="", str2="", ans;

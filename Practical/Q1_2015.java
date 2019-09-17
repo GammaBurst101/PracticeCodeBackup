@@ -1,5 +1,14 @@
 package Practical;
-
+/*
+ *  ALGORITHM:
+ *  1. Start
+ *  2. Take input from the user
+ *  3. Check for the validity of the input
+ *  4. Start from given number M and for each number, sum up the digits
+ *  5. Check if the digits equal to N and count the digits
+ *  6. Print the results
+ *  7. Stop
+   */
 import java.util.Scanner;
 class Q1_2015 {
     public static void main (String args[]) {

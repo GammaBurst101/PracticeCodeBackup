@@ -3,8 +3,8 @@ package Practical;
  * 1. Start
  * 2. Take the total number of boxes to be packed as an input from the user
  * 3. Proceed if the number of boxes are less than or equal to 1000, otherwise print an appropriate error msg and go to step 7
- * 4. Starting from the largest cartoon, find how many of them are needed to pack the boxes.
- * 5. If some boxes are left then move on to the next lower-sized cartoon
+ * 4. Starting from the largest carton, find how many of them are needed to pack the boxes.
+ * 5. If some boxes are left then move on to the next lower-sized carton
  * 6. Repeat steps 3 and 4 until there are no boxes left
  * 7. Stop
    */
@@ -14,17 +14,17 @@ class Q1_2017 {
     
     void calculate (int n) {
         numOfBoxes = n;
-        int[] cartoonSizes = {48, 24, 12, 6};
+        int[] cartonSizes = {48, 24, 12, 6};
         
         int left, totalReqd = 0;
         System.out.println ("For packaging, we need :");
-        for (int i = 0; i < cartoonSizes.length; i++) {
-            int reqd = numOfBoxes / cartoonSizes[i];
+        for (int i = 0; i < cartonSizes.length; i++) {
+            int reqd = numOfBoxes / cartonSizes[i];
             totalReqd += reqd;
-            numOfBoxes %= cartoonSizes[i];
+            numOfBoxes %= cartonSizes[i];
             
             if (reqd != 0)
-                System.out.println (reqd+", "+cartoonSizes[i]+"-sized cartoons");
+                System.out.println (reqd+", "+cartonSizes[i]+"-sized cartons");
         }
         
         if (numOfBoxes != 0)
@@ -32,7 +32,7 @@ class Q1_2017 {
         
         System.out.println ("Remaining Boxes \t= "+numOfBoxes);
         System.out.println ("Total number of boxes \t= "+n);
-        System.out.println ("Total number of boxes \t= "+totalReqd);
+        System.out.println ("Total number of cartons \t= "+totalReqd);
     }
     
     public static void main (String args[]) {
