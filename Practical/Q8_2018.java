@@ -2,7 +2,12 @@ package Practical;
 /*
  * ALGORITHM
  * 1. Start
- * 2. Take input for the size of the matrix
+ * 2. Take input for the size of the matrices
+ * 3. Initialize matrix objects
+ * 4. Take input for the elements of the matrices
+ * 5. Compare the values
+ * 6. Print the result
+ * 7. Stop
    */
 import java.util.Scanner;
 class Q8_2018{//The class name should be kept 'EqMat'
