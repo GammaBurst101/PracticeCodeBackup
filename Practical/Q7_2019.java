@@ -1,36 +1,51 @@
 package Practical;
-//The following code was written by vibhas. Therefore, no algo It's the soln of Q7 of 2019 theory paper
-
+//This code was written by Vibhas
+/*
+ *  ALGORITHM:
+ *  1. Start
+ *  2. Take input from the user
+ *  3. Store the length of the input in a variable
+ *  4. Extract the digits one-by-one and add them after raising them to power equal to length
+ *  5. Check if sum equals the number itself
+ *  6. Display results
+ *  7. Stop
+   */
 import java.util.Scanner;
-class Q7_2019 {
-    int n;
-    int l;
+class Q7_2019 //The class name should be kept 'ArmNum' as per the question
+{
+    int n,l;
     
-    Q7_2019(int nn) {
-        n = nn;
+    Q7_2019(int nn)
+    {
+        n=nn;
+        l=Integer.toString(n).length();
     }
-    
-    int sumPow(int i) {
-        if (i==0)
-            return 1;
+
+    int sum_pow(int i) // recursive method to find sum of digits raised to the power of the length
+    {
+        if(i==0)
+            return 0;
         else
-            return ((int)Math.pow(i%10, l) * 10 + sumPow(i/10));
+        {
+            return (int)Math.pow(i%10,l) + sum_pow(i/10);
+        }
     }
-    
-    void isArmstrong() {
-        if (n == sumPow(n))
-            System.out.println ("Armstrong");
+
+    void isArmstrong(){
+        if(n==sum_pow(n))
+            System.out.println("Armstrong");
         else
-            System.out.println ("Not");
+            System.out.println("Not armstrong");
     }
-    
-    public static void main (String[] ar) {
-        Scanner sc = new Scanner (System.in);
-        System.out.println ("Enter a number: ");
-        int num = sc.nextInt();
-        l = Integer.toString(num).length();
-        
-        Q7_2019 ob = new Q7_2019(num);
+
+    public static void main(String ar[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter a number");
+
+        int num=sc.nextInt();
+        Q7_2019 ob=new Q7_2019(num);
         ob.isArmstrong();
+
     }
 }
