@@ -1,8 +1,8 @@
 package Practical;
 //The following code was written by vibhas. Therefore, no algo. It is the soln of Q1 of 2019 practical paper
-
+//<-----------------------------  DO NOT COPY THIS CODE. I repeat, DO NOT COPY THIS CODE! ---------------------------------------->
 import java.util.Scanner;
-class Q1_2019 { // TO DO-> It works perfectly for the question eg input but cause a logical error if it had to go to the nxt year while skipping
+class Q1_2019 {
     static int dayNumber, year, daysToSkip;
     int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String monthNames[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
