@@ -1,29 +1,40 @@
 package Practical;
-//The following code was written by vibhas. Therefore, no algo. It is the soln of Q1 of 2019 practical paper
-//<-----------------------------  DO NOT COPY THIS CODE. I repeat, DO NOT COPY THIS CODE! ---------------------------------------->
+/*
+ *  ALGORITHM:
+ *  1. Start
+ *  2. Take input from the user
+ *  3. Check for all the conditions specified by the question
+ *  4. Find the date according to the day input
+ *  5. Display the result
+ *  6. Find the new date according to the number of days to skip
+ *  7. Display the result
+ *  8. Stop
+   */
 import java.util.Scanner;
-class Q1_2019 {
-    static int dayNumber, year, daysToSkip;
+class Q1_2019{
+    int dayNum, year, N;
+    String date;
     int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String monthNames[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    static String date;
 
-    boolean input() {
-        Scanner sc = new Scanner (System.in);
+    boolean input(){
+        Scanner sc = new Scanner(System.in);
         System.out.print ("Day Number: ");
-        dayNumber = sc.nextInt();
+        dayNum = sc.nextInt();
+
         System.out.print ("Year: ");
         year = sc.nextInt();
-        System.out.print ("Date After (N days): " );
-        daysToSkip = sc.nextInt();
 
-        if (!(dayNumber >= 1 && dayNumber <= 366 )) {
-            System.out.println ("Day no. out of range");
+        System.out.print ("Day After(N days): ");
+        N = sc.nextInt();
+
+        if (dayNum < 1 || dayNum > 366){
+            System.out.print ("Day number out of range");
             return false;
-        } else if (! (Integer.toString(year).length() == 4)) {
+        } else if ((! (Integer.toString(year).length() == 4)) ){
             System.out.println ("Invalid Year");
             return false;
-        } else if (!(daysToSkip >= 1 && daysToSkip <= 100)) {
+        } else if (!(N >= 1 && N <= 100)) {
             System.out.println ("Date After (N Days) out of range");
             return false;
         } else {
@@ -32,7 +43,7 @@ class Q1_2019 {
                 days[1] = 29;
             
             //Checking if the user has input day number 366 but not a leap year
-            if ((dayNumber == 366) && (year % 4 != 0)) {
+            if ((dayNum == 366) && (year % 4 != 0)) {
                 System.out.println ("Day 366 is only possible in a leap year");
                 return false;
             }
@@ -40,45 +51,38 @@ class Q1_2019 {
         }
     }
 
-    void findDate(int day) {//num is the number of days to skip before printing the new date
-        //int initiate, month = 0; PMOD
-
-        /*if (D == "")
-            initiate = 0;   
-        else {
-            initiate = Integer.parseInt(D.substring(0, D.indexOf(' ') - 2)); 
-
-            for (int x = 0; x < 12; x++) {
-                if (monthNames[x].equals(D.substring(D.indexOf(' ') + 1, D.lastIndexOf(' ') - 1))) {
-                    month = x;
-                    break;
-                }
-            }
-            D = ""; 
-        }*/
+    void findDate() {
         int daysCounted = 0;
-        String date = "";
-        for (int x = 0; x < 12; x++) {
-            daysCounted += days[x];
-            if (daysCounted >= day) {
-                //D = D + (num - (sum - num)) + "th"; PMOD
-                date = (days[x] - (daysCounted - day)) + "th";
-                //D += " " + monthNames[month] + year; PMOD
-                date += " " + monthNames[x] + ", " + year;
+
+        for (int i = 0; i < 12; i++){
+            daysCounted += days[i];
+            
+            if (daysCounted >= dayNum){
+                date = (days[i] - (daysCounted - dayNum)) + "th";
+                date += " " + monthNames[i] + ", "+year;
                 break;
             }
         }
-
-        this.date = date;
+        
+        System.out.println (date);
     }
 
-    public static void main (String[] ar) {
-        Q1_2019 ob = new Q1_2019();
-        if (ob.input()) {
-            ob.findDate(dayNumber);
-            System.out.println ("DATE: "+date);
-            ob.findDate(dayNumber + daysToSkip);
-            System.out.println ("Date After " + daysToSkip + " days: "+date); 
+    void findNewDayNum() {
+        dayNum += N;
+        if(dayNum > 365){//Update the year number if the 'days after' part exceeds the limit
+            year++;
+            dayNum -= 365;
+        }
+    }
+    
+    public static void main (String args[]){
+        Q1_2019 obj = new Q1_2019();
+        if (obj.input()){
+            System.out.print("Date: ");
+            obj.findDate();
+            obj.findNewDayNum();
+            System.out.print("Date after "+obj.N+" days: ");
+            obj.findDate();
         }
     }
 }
